@@ -2,14 +2,14 @@ import * as http from 'http';
 import {IncomingMessage, ServerResponse} from "node:http";
 import {UserController} from "./users/user.controller";
 
-const controllers = {
-    user: UserController
-}
-
 const server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
+    const userController = new UserController();
+
     switch (req.url) {
         case '/api/users':
-            new controllers.user().getAll(req, res);
+            if(req.method === 'GET') userController.getAll(req, res);
+            if(req.method === 'POST') userController.createUser(req, res);
+            break;
         default:
             res.writeHead(404, 'Not Found');
             res.end();

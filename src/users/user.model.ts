@@ -1,4 +1,13 @@
 
+export type User = {
+    userName: string;
+    email: string;
+    password: string;
+}
+
+export type UserDTO = User & {
+    id: number;
+}
 
 export class UserModel {
     get userName(): string {

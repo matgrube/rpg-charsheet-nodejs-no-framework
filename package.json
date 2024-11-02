@@ -5,14 +5,18 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon ./src/index.ts"
+    "dev": "nodemon ./src/index.ts",
+    "start:prod": "node ./dist/main"
   },
-  "type": "module",
   "devDependencies": {
     "@types/node": "^22.8.1",
     "nodemon": "^3.1.7",
     "tsx": "^4.19.2",
     "typescript": "^5.5.3"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@types/pg": "^8.11.10",
+    "pg": "^8.13.1"
+  }
 }
