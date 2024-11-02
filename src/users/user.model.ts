@@ -6,7 +6,7 @@ export type User = {
 }
 
 export type UserDTO = User & {
-    id: number;
+    id: string;
 }
 
 export class UserModel {

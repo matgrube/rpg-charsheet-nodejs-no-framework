@@ -12,8 +12,9 @@ export class UserRepository {
     async getUsers(): Promise<QueryResult<QueryResultRow>> {
         return this.databaseService.query('SELECT * FROM auth.user');
     }
-    async createUser(id: string, email: string, userName: string, password: string) {
-        await this.databaseService.query(`INSERT INTO auth.user (id, username, email, password) VALUES ('${id}', '${email}', '${userName}', '${password}')`);
+
+    async createUser(id: string, userName: string, email: string, password: string) {
+        await this.databaseService.query(`INSERT INTO auth.user (id, username, email, password) VALUES ('${id}', '${userName}', '${email}', '${password}')`);
     }
 
 }

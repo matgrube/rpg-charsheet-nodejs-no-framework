@@ -3,9 +3,11 @@ import {UserRepository} from "./user.repository";
 import {randomUUID} from "node:crypto";
 import {UserDTO} from "./user.model";
 import {bodyParser} from "../utils/bodyParser";
+import {UserService} from "./user.service";
 
 export class UserController {
     private userRepository: UserRepository = new UserRepository();
+    private userService: UserService = new UserService();
 
     async getAll (req: IncomingMessage,res: ServerResponse) {
         const users= await this.userRepository.getUsers();
@@ -15,11 +17,11 @@ export class UserController {
 
     async createUser (req: IncomingMessage,res: ServerResponse) {
         try {
-            const body = await bodyParser(req);
-            const bodyObject: UserDTO = JSON.parse(body);
-            await this.userRepository.createUser(randomUUID(), bodyObject.userName, bodyObject.email, bodyObject.password);
+            const body :UserDTO = JSON.parse(await bodyParser(req));
+            const encryptedBody: UserDTO = {...body, password: await this.userService.encryptPassword(body.password), id: randomUUID()}
+            await this.userRepository.createUser(encryptedBody.id, encryptedBody.userName, encryptedBody.email, encryptedBody.password);
             res.writeHead(201, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify(bodyObject));
+            res.end(JSON.stringify(encryptedBody));
         } catch (e) {
             console.error(e);
         }
