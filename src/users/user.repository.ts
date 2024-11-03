@@ -14,6 +14,7 @@ export class UserRepository {
     }
 
     async createUser(id: string, userName: string, email: string, password: string) {
+        // TODO: Switch to using Transactions
         await this.databaseService.query(`INSERT INTO auth.user (id, username, email, password) VALUES ('${id}', '${userName}', '${email}', '${password}')`);
     }
 

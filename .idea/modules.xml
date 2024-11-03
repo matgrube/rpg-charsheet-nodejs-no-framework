@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/rpg-character-sheet-backend.iml" filepath="$PROJECT_DIR$/.idea/rpg-character-sheet-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/rpg-charsheet-nodejs-no-framework.iml" filepath="$PROJECT_DIR$/.idea/rpg-charsheet-nodejs-no-framework.iml" />
     </modules>
   </component>
 </project>
